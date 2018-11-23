@@ -16,6 +16,7 @@ contract MetaCoin {
 		uint amount;
 		 
     }
+	mapping(string=>Location) ID;
     mapping(uint=>Location) Trail;
 	uint8 TrailCount=0;
     mapping (address => uint) balances;
@@ -26,17 +27,20 @@ contract MetaCoin {
 		balances[tx.origin] = 10000;
 	}
 
-	function sendCoin(address receiver, uint amount,string name) public returns(bool sufficient) {
+
+	function sendCoin(address receiver, uint amount,string name,string id) public returns(bool sufficient) {
 		Location memory newLocation;
         newLocation.Receiver = receiver;
         newLocation.Timestamp = now;
 		newLocation.name = name;
 		newLocation.amount = amount;
+		
         if(TrailCount!=0)
         {
             newLocation.PreviousLocationId= Trail[TrailCount].Receiver;
         }
         Trail[TrailCount] = newLocation;
+		ID[id] = Trail[TrailCount];
         TrailCount++;
 		if (balances[msg.sender] < amount) return false;
 		balances[msg.sender] -= amount;

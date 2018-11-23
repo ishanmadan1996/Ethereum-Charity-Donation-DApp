@@ -64,6 +64,12 @@ const App = {
       self.setStatus('Error getting balance; see log.')
     })
   },
+  generateID:function() {
+    // Math.random should be unique because of its seeding algorithm.
+    // Convert it to base 36 (numbers + letters), and grab the first 9 characters
+    // after the decimal.
+    document.getElementById('uniqueID').value= 'ID_' + Math.random().toString(36).substr(2, 9);
+  },
   getAccount: function(){
     alert(account)
   },
@@ -92,7 +98,7 @@ const App = {
 
   sendCoin: function () {
     const self = this
-
+    const id = document.getElementById('uniqueID').value
     const amount = parseInt(document.getElementById('amount').value)
     const receiver = document.getElementById('receiver').value
     const name = document.getElementById('locationName').value
@@ -101,7 +107,7 @@ const App = {
     let meta
     MetaCoin.deployed().then(function (instance) {
       meta = instance
-      return meta.sendCoin(receiver, amount,name, { from: account })
+      return meta.sendCoin(receiver, amount,name,id, { from: account })
     }).then(function () {
       self.setStatus('Transaction complete!')
       self.refreshBalance()
