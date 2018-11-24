@@ -16,6 +16,7 @@ contract MetaCoin {
 		uint amount;
 		 
     }
+	mapping(address=>string) getID;
 	mapping(string=>Location) ID;
     mapping(uint=>Location) Trail;
 	uint8 TrailCount=0;
@@ -34,7 +35,7 @@ contract MetaCoin {
         newLocation.Timestamp = now;
 		newLocation.name = name;
 		newLocation.amount = amount;
-		
+		getID[receiver] = id;
         if(TrailCount!=0)
         {
             newLocation.PreviousLocationId= Trail[TrailCount].Receiver;
@@ -48,6 +49,14 @@ contract MetaCoin {
 		emit Transfer(msg.sender, receiver, amount);
 		return true;
 	}
+	function getInfoPrevious(address receiver) public returns(address,uint,string){
+		string id = getID[receiver];
+		if (bytes(id).length == 0){
+			return (receiver,0,id);
+		}
+		return (ID[id].name,ID[id].amount,id);
+	}
+
  	function GetTrailCount() public returns(uint8){
         return MetaCoin.TrailCount;
     }
@@ -65,4 +74,5 @@ contract MetaCoin {
 	function getaddress() public view returns(address) {
 		return msg.sender;
 	}
+	
 }

@@ -68,7 +68,22 @@ const App = {
     // Math.random should be unique because of its seeding algorithm.
     // Convert it to base 36 (numbers + letters), and grab the first 9 characters
     // after the decimal.
-    document.getElementById('uniqueID').value= 'ID_' + Math.random().toString(36).substr(2, 9);
+    document.getElementById('uniqueID').value=Math.random().toString(36).substr(2, 9);
+  },
+  getPreviousInfo: function(){
+    let meta
+    MetaCoin.deployed().then(function(instance){
+      meta = instance
+      meta.getaddress.call({from: account}).then(function(value){
+        const receiver = value
+        meta.getInfoPrevious.call(receiver,{from: account}).then(function(returnValues){
+          document.getElementById("receiver").value= returnValues[0]
+          document.getElementById("amount").value = returnValues[1]
+          document.getElementById("getUniqueID").value = returnValues[2]
+        })
+      })
+      
+    })
   },
   getAccount: function(){
     alert(account)
@@ -103,7 +118,10 @@ const App = {
     const receiver = document.getElementById('receiver').value
     const name = document.getElementById('locationName').value
     this.setStatus('Initiating transaction... (please wait)')
-
+    if (id == ""){
+      alert("Please enter transaction id")
+      return
+    }
     let meta
     MetaCoin.deployed().then(function (instance) {
       meta = instance
