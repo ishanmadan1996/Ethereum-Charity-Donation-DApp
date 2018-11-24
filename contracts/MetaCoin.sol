@@ -49,12 +49,16 @@ contract MetaCoin {
 		emit Transfer(msg.sender, receiver, amount);
 		return true;
 	}
-	function getInfoPrevious(address receiver) public returns(address,uint,string){
+	function getInfoPrevious(address receiver) public returns(string,uint,string){
 		string id = getID[receiver];
 		if (bytes(id).length == 0){
-			return (receiver,0,id);
+			return ("Null",0,id);
 		}
 		return (ID[id].name,ID[id].amount,id);
+	}
+	function getTransactionByID(string id) public returns(uint,string,address) {
+		
+		return (ID[id].amount,ID[id].name,ID[id].Receiver);
 	}
 
  	function GetTrailCount() public returns(uint8){

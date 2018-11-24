@@ -77,9 +77,9 @@ const App = {
       meta.getaddress.call({from: account}).then(function(value){
         const receiver = value
         meta.getInfoPrevious.call(receiver,{from: account}).then(function(returnValues){
-          document.getElementById("receiver").value= returnValues[0]
+          //document.getElementById("receiver").value= returnValues[0]
           document.getElementById("amount").value = returnValues[1]
-          document.getElementById("getUniqueID").value = returnValues[2]
+          document.getElementById("uniqueID").value = returnValues[2]
         })
       })
       
@@ -87,6 +87,18 @@ const App = {
   },
   getAccount: function(){
     alert(account)
+  },
+  getInfoByID: function(){
+    let meta
+    MetaCoin.deployed().then(function(instance){
+      meta = instance;
+      const id = document.getElementById('uniqueID').value
+      meta.getTransactionByID.call(id,{from:account}).then(function(returnValues){
+        //document.getElementById("receiver").value= returnValues[2]
+        document.getElementById("amount").value = returnValues[1]
+        document.getElementById("locationName").value = returnValues[0]
+      })
+    })
   },
 
   getAnyLocation: function(){
