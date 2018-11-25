@@ -3,31 +3,81 @@
 <head>
   <title>Charity Donation App</title>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="styles/app.css">
+
   <script src="./app.js"></script>
+  <style>
+  .page-header
+  {
+    margin-top:0px;
+    font-size: 29px;
+
+  }
+  .you-have{
+    font-size: 20px;
+    color:grey;
+  }
+  body
+  {
+    margin-top: 5%;
+height: 100%;
+background-image: url("app\\charity.jpg");
+background-size: cover;
+background-repeat:no-repeat;
+
+        /* Center and scale the image nicely */
+  }
+  html{
+    /* Full height */
+
+  height: 100%;
+
+  }
+  
+  </style>
 </head>
 <body>
-  <h1>Charity Donation App</h1>
-  <h3>You have <span class="black"><span id="balance"></span> Dollars</span></h3>
-  <h3>Send MetaCoin</h3>
-  <button id="getUniqueID" onclick="App.generateID()">Get Unique Transaction ID</button>   <button id="getPrevious" onclick="App.getPreviousInfo()">Get Previous Info</button>  <button id="getInfoByID" onclick="App.getInfoByID()">Get Info by ID</button>
-<br><br><label for="uniqueID">Unique ID:</label><input type="text" id="uniqueID" placeholder="e.g.,2k29mdxn1"></input>
+  <div class="container-fluid">
+  <div class="page-header">Charity Donation App</div>
+  <span class="you-have">You have<strong><b> <span id="balance"></span></b></strong> Dollars</span></span>
+<div class="form-group">
+    <label for="uniqueID">Unique ID:</label>  
+  <input class="form-control"  type="text" id="uniqueID" placeholder="e.g.,2k29mdxn1"></input>
+  <button class="btn btn-info" id="getUniqueID" onclick="App.generateID()">Get Unique Transaction ID</button>  
+  <button class="btn btn-info" id="getInfoByID" onclick="App.getInfoByID()">Track Money</button>
 
-  
+</div>
+<div class="form-group">
 
-  <br><label for="amount">Amount:</label><input type="text" id="amount" placeholder="e.g., 95"></input>
-  <br><label for="receiver">To Address:</label><input type="text" id="receiver" placeholder="e.g., 0x93e66d9baea28c17d9fc393b53e3fbdd76899dae"></input>
-  
-  <br><label for="locationName">Name:</label> <input type="text" id="locationName" placeholder="Location name"></input>
-  <br><br><button id="send" onclick="App.sendCoin()">Send Dollars</button>  <button id="getCurrentLocation" onclick="App.getCurrentLocation()">Get the Current Transaction</button>
-  <br><span id="status"></span>
-  <!-- <br><br> -->
- 
+  <label for="amount">Amount:</label>
+  <input  class="form-control" type="text" id="amount" placeholder="e.g., 95"></input>
+  </div>
+  <div class="form-group">
+  <label for="receiver">To Address:</label> 
+   <input  class="form-control" type="text" id="receiver" placeholder="e.g., 0x93e66d9baea28c17d9fc393b53e3fbdd76899dae"></input>
+  </div>
+   <div class="form-group">
+
+  <label for="locationName">Name:</label>  
+      <input  class="form-control" type="text" id="locationName" placeholder="Location name"></input>
+    </div>
+    <button class="btn btn-info" id="getPrevious" onclick="App.getPreviousInfo()">Show Received Money</button>
+
+    <button class="btn btn-info" id="send" onclick="App.sendCoin()">Send Dollars</button>
+
+  <span id="status"></span>
   <br><br>
-  <input type="text" id="Transactionno" placeholder="Transaction Number"></input>
-  <br><br>
-  <button id="getCurrentLocation" onclick="App.getAnyLocation()">Get Any Transaction</button><br>  
+  <button class="btn btn-info" id="getAccount" onclick="App.getAccount()">Get the current account</button>
+
   <br>
-  <button id="getAccount" onclick="App.getAccount()">Get the current account</button>
-  <!-- <br><span class="hint"><strong>Hint:</strong> open the browser developer console to view any errors and warnings.</span> -->
+</div>
 </body>
 </html>

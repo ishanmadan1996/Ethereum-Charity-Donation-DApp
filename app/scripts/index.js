@@ -94,9 +94,10 @@ const App = {
       meta = instance;
       const id = document.getElementById('uniqueID').value
       meta.getTransactionByID.call(id,{from:account}).then(function(returnValues){
+        alert("Your "+returnValues[0]+" dollars is with "+returnValues[1])
         //document.getElementById("receiver").value= returnValues[2]
-        document.getElementById("amount").value = returnValues[1]
-        document.getElementById("locationName").value = returnValues[0]
+        // document.getElementById("amount").value = returnValues[1]
+        // document.getElementById("locationName").value = returnValues[0]
       })
     })
   },
