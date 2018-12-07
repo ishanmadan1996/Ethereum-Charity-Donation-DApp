@@ -53,6 +53,10 @@ npm run dev
 
 * [Truffle](https://truffleframework.com/docs/truffle/reference/configuration) - Truffle is a framework for rapid development, testing and deployment of smart contracts with Solidity and Javascript.
 
+## UI of the web dApp
+
+![alt text](https://github.com/ishanmadan1996/Ethereum-Charity-Donation-DApp/blob/master/Implement/1_charity_initial.png)
+
 ## Authors
 
 * **Ishan Madan** - [ishanmadan1996](https://github.com/ishanmadan1996)
